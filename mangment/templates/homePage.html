@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block Title %} ادمن {% endblock %} 
+
+
+{% block logout %}
+<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
+  <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
+</form>
+
+{% endblock %}
+
+<div class="container">
+    {% block body%}
+  <div class="card">
+    <div class="card-body" style="direction: rtl;">
+      <div class="row">
+        <div class="col-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">عرض جميع الطلبات</div>
+            <div      
+              class="card-footer d-flex align-items-center justify-content-between"
+            >
+              <a class="small text-white stretched-link" href="{% url 'get_reqiest' %}"
+                >عرض التفاصيل</a
+              >
+              <div class="small text-white">
+                <i class="fas fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">عرض جميع المستخدمين</div>
+            <div
+              class="card-footer d-flex align-items-center justify-content-between"
+            >
+              <a
+                class="small text-white stretched-link"
+                href="{% url 'get_users' %}"
+                >عرض التفاصيل</a
+              >
+              <div class="small text-white">
+                <i class="fas fa-angle-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock%}
+</div>

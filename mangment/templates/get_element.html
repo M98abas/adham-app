@@ -1,0 +1,179 @@
+{% extends 'base.html' %} 
+{% block Title %} الطلبات {% endblock %} 
+{% block logout %}
+<form
+  action="{% url 'logout_admin_user' %}"
+  method="POST"
+  style="display: flex; justify-content: center"
+  accept-charset="utf-8"
+>
+  {% csrf_token %}
+  <input
+    type="submit"
+    name="logout_user"
+    style="width: 100%; height: 100%"
+    value="تسجيل الخروج"
+  />
+</form>
+
+{% endblock %} {% block body %} {% if data|length == 0 %}
+
+<div class="col-6">
+  <h3>{{msg}}</h3>
+</div>
+
+{% else %}
+<div class="container">
+  <button onclick="generate()" dir="rtl">
+    استخراج البيانات على شكل ملف pdf
+  </button>
+  <table id="simple_table" class="table" style="direction: rtl">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">اسم المستخدم</th>
+        <th scope="col">العنوان الوظيفي</th>
+        <th scope="col">العنوان المراد الحصول عليه</th>
+        <th scope="col">الحالة</th>
+        <th scope="col">تاريخ انشاء الطلب</th>
+        <th scope="col">الفايلات</th>
+        <th scope="col">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <th scope="">{{row.pk}}</th>
+        <td>{{row.users.email}}</td>
+        <td>{{row.job_title}}</td>
+        <td>{{row.targeted_title}}</td>
+        <td>{{row.request_status}}</td>
+        <td>{{row.users.create_at}}</td>
+        <td>
+          {% for bundle in row.filesforms_set.all %}
+          <a href="/media/{{bundle.files_path}}" download>[{{bundle.title}}]</a>
+          {% endfor %}
+        </td>
+        <td style="display: flex; justify-content: space-between; gap: 10">
+          {% if row.request_status == 'New' or row.request_status == 'جديد' %}
+          <button
+            class="btn btn-primary"
+            onclick="acceptRequest('{{row.users.email}}')"
+            width="80"
+          >
+            قبول
+          </button>
+          <button
+            class="btn btn-danger"
+            onclick="rejectRequest('{{row.users.email}}')"
+            width="80"
+          >
+            رفض
+          </button>
+          {% elif row.request_status != 'تم القبول' and row.request_status !=
+          'تم رفض الطلب' %}
+          <button
+            class="btn btn-primary"
+            onclick="acceptRequest('{{row.users.email}}')"
+            width="80"
+          >
+            قبول
+          </button>
+          {% elif row.request_status != 'تم رفض الطلب' %}
+          <button
+            class="btn btn-danger"
+            onclick="rejectRequest('{{row.users.email}}')"
+            width="80"
+          >
+            رفض
+          </button>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  function acceptRequest(id) {
+    var url = `/admin-managment/accepted/${id}`;
+    $.get(url, {}, function (data, status) {
+      alert(status);
+      location.reload();
+
+      console.log(data, status);
+    });
+  }
+
+  function rejectRequest(id) {
+    var url = `/admin-managment/rejected/${id}`;
+    $.get(url, {}, function (data, status) {
+      alert(status);
+      location.reload();
+    });
+  }
+  function generate() {
+    var doc = new jsPDF("p", "pt", "letter");
+    var htmlstring = "";
+    var tempVarToCheckPageHeight = 0;
+    var pageHeight = 0;
+    pageHeight = doc.internal.pageSize.height;
+    specialElementHandlers = {
+      // element with id of "bypass" - jQuery style selector
+      "#bypassme": function (element, renderer) {
+        // true = "handled elsewhere, bypass text extraction"
+        return true;
+      },
+    };
+    margins = {
+      top: 150,
+      bottom: 60,
+      left: 40,
+      right: 40,
+      width: 600,
+    };
+    var y = 20;
+    doc.setLineWidth(2);
+    doc.text(
+      200,
+      (y = y + 30),
+      "Imam Kadhim Faculty of Islamic Sciences University"
+    );
+    doc.autoTable({
+      html: "#simple_table",
+      startY: 70,
+      theme: "grid",
+      columnStyles: {
+        0: {
+          cellWidth: 70,
+        },
+        1: {
+          cellWidth: 70,
+        },
+        2: {
+          cellWidth: 70,
+        },
+        3: {
+          cellWidth: 70,
+        },
+        4: {
+          cellWidth: 70,
+        },
+        5: {
+          cellWidth: 70,
+        },
+      },
+      styles: {
+        minCellHeight: 40,
+      },
+    });
+    doc.save("Marks_Of_Students.pdf");
+  }
+</script>
+
+{% endblock %}

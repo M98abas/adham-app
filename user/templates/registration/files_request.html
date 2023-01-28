@@ -1,0 +1,324 @@
+{% extends "base.html" %} 
+{% block Title %} Files {% endblock %} 
+{% block logout %}
+<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
+  <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
+</form>
+
+{% endblock %}
+
+{% block body%}
+{% load static %}
+<div
+  class="main-container"
+  style="
+    padding: 10px 5px;
+    text-align: right;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+  "
+  dir="rtl"
+>
+  <div class="content" style="width: 720px">
+    <div
+      class="form-outline mb-4"
+      style="
+        padding: 10px;
+        border-radius: 30px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+      "
+    >
+      <h3 dir="rtl"># الرجاء ملء الاستمارات ادناه ,وارسالها مع فورمة الطلب :</h3>
+      <br />
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file1.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>ملف تقرير اللجنة العلمية</span>
+      </div>
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file2.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>تقرير الاستلال مع استماراته</span>
+      </div>
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file3.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span> معلومات التحصيل العلمي لصاحبة الترقية</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file4.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>استمارة السيرة الذاتية المختصرة لطالب الترقية</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file5.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span> توصية رئيس القسم بالتوصية</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file6.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+              viewBox="0 0 16 16"
+              >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>احتساب نقاط المراتب العلمية في التخصصات الإنسانية</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file7.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>طلب ترويج معاملة ترقية من لجنة الترقيات للعميد</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file8.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>تشكيل لجنة الاستلال</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file9.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>إقرار</span>
+      </div>
+
+      <div class="form-outline mb-4">
+      
+        <a href="{% static 'files/file10.docx' %}">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-download"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+              d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+          </svg>
+        </a>
+        <span
+        >احالة معاملة ترقية من قبل عضو اللجنة المختص الى لجنة الترقيات</span
+      >
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file11.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>طلب ترويج معاملة ترقية من رئيس القسم</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file12.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>جدول بأبحاث الترقية السابقة</span>
+      </div>
+
+      <div class="form-outline mb-4">
+          <a href="{% static 'files/file13.docx' %}">
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-download"
+            viewBox="0 0 16 16"
+            >
+            <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+            />
+            <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+            />
+        </svg>
+    </a>
+    <span>إحتساب نقاط النشاطات وخدمة المجتمع</span>
+      </div>
+
+      <div
+        class="form-outline mb-4"
+        style="display: flex; justify-content: center"
+      >
+        <a
+          href="{% url 'make_request' %}"
+          class="btn btn-primary"
+          style="width: 180px"
+          >الذهاب الى فورم التقديم</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

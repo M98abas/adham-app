@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block Title %} Admin {% endblock %} 
+{% block logout %}
+<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
+  <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
+</form>
+
+{% endblock %}
+{% block body%}
+
+{% load static %}
+<div class="container" style="display: flex;">
+  <div class="card" style="width: 1000px; height: 500px">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-5">
+          <div class="card" style=" mix-blend-mode: multiply; width: 18rem; height: 400px;line-height: 20px;align-items: center; display: flex; padding: 0 5px;">
+            <img
+              class="card-img-top"
+              src='{% static "images/request-box.jpg" %}'
+              alt="Card image cap"
+              style="width: 180px; height: auto;"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Make Request</h5>
+              <p class="card-text">
+                From Here you can make request with all required files.
+              </p>
+              <a href="{% url 'files_form' %}" class="btn btn-primary">Go Form</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card" style=" mix-blend-mode: multiply; width: 18rem; height: 400px;line-height: 20px;align-items: center; display: flex; padding: 0 5px;">
+            <img
+              class="card-img-top"
+              src="{% static 'images/status.png' %}"
+              alt="Card image cap"
+              style="width: 180px; height: auto;"
+            />
+            <div class="card-body">
+              <h5 class="card-title">My requests</h5>
+              <p class="card-text">See All request status that you send.</p>
+              <a href="{% url 'getElement' %}" class="btn btn-primary">Go</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
