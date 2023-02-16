@@ -29,15 +29,23 @@ def get_files(request):
     return render(request, template_name,{"msg":"Hello"})
 
 
+def get_terms_files(request):
+    if not request.user.is_authenticated:
+        return redirect("login_local")
+    
+    template_name = "./registration/termsAcond.html"
+    
+    return render(request, template_name,{"msg":"Hello"})
+
+
 @login_required(login_url='login')
 def get_my_request(request):
     template_name = "./registration/get_element.html"
-    print(type(request.user.username))
-    data = UsersData.objects.all().filter(userName=request.user.username)
-    usersInformation = []
-    for d in data:
-        usersInformation.append(UsersInfo.objects.get(users=d))
-    print(usersInformation[0].users.email)
+    print(request.user)
+    usersInformation = UsersInfo.objects.filter(users=request.user.username)
+    print(usersInformation)
+    if not usersInformation.exists():
+        usersInformation = []
     return render(request, template_name,{"data":usersInformation})
 
 
@@ -61,7 +69,6 @@ def register(request,*args,**kwargs):
 
 
 def login_view(request):
-    try:
         context= {}
         form = AuthenticationForm(data=request.POST or None)
         if request.method == 'POST':
@@ -77,8 +84,8 @@ def login_view(request):
                 'message':"الرمز او اسم المستخدم غير صحيح او لم يتم ادخالهما","form":form
                 }
         return render(request, './registration/login.html',context)
-    except (Exception):
-            return render(request, './registration/login.html',{"message":"الرمز او الاييمل خطأ الرجاء اعد المحاولة"})
+# except (Exception):
+#         return render(request, './registration/login.html',{"message":"الرمز او الاييمل خطأ الرجاء اعد المحاولة"})
 
 # @staff_member_required(login_url='Login')
 def user_logout(request):
@@ -90,8 +97,8 @@ def make_request(request):
     context = {}
     
     if request.method == 'POST':
-        username = request.user.username
-        email = request.POST.get("email")
+        username = request.POST.get("userName")
+        email = request.user.username
         phone = request.POST.get("phone")
         job_title = request.POST.get("job_title")
         spacificTitle = request.POST.get("spacificTitle")
@@ -104,9 +111,12 @@ def make_request(request):
         if 'edu.iq' not in email:
             return render(request, './registration/request.html',{"message":"Sorry your email is not valid"})
 
+        if not UsersData.objects.filter(email=email).exists():
         # Save data to database
-        obj_request = UsersData.objects.create(userName=username,email=email,phone=phone)
-        obj_request.save()
+            obj_request = UsersData.objects.create(userName=username,email=email,phone=phone)
+            obj_request.save()
+        else:
+            obj_request = UsersData.objects.get(email=email)
         
         user_info = UsersInfo.objects.create(job_title=job_title,spacificTitle=spacificTitle,department=department,currently_job_title=currently_job_title,date_reviced_title=date_reviced_title,targeted_title=targeted_title,validation_date=validation_date,users=obj_request)
         user_info.save()
@@ -119,7 +129,9 @@ def make_request(request):
             uploaded_files = FilesForms(title=fileData.name,files_path=url_file,user= user_info)
             uploaded_files.save()
         context["msg"] = "All Good"    
-        return redirect('index_page')
+        return redirect('successs')
 
     return render(request, './registration/request.html',context)
 
+def get_teams(request):
+    return render(request, './registration/teams.html',{})

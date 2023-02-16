@@ -1,13 +1,33 @@
 {% extends 'base.html' %} 
+
 {% block logout %}
 <form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
   <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
 </form>
 
 {% endblock %}
+{% block nav-bar %}
+  <a class="navbar-brand" href="{% url 'index_page' %}" dir="ltr">الصفحة الرئيسية</a>
+  <a class="navbar-brand" href="{% url 'teams_template' %}" dir="ltr">لجنة المناقشة</a>
 
-{% block Title %}Success{% endblock %} 
-
+{% endblock %}
+{% block Title %} النتيجة {% endblock %} 
 {% block body %}
-    <h1>Congragulation</h1>
+<div class="container">
+
+  <div class="row text-center">
+    <div class="col-sm-12 col-sm-offset-8">
+      <br /><br />
+      <h2 style="color: #0fad00">تمت العملية بنجاح</h2>
+      <h3 dir="rtl">عزيزي,</h3>
+      <p dir="rtl" style="font-size: 20px; color: #5c5c5c">
+        شكرا لحضرتك لتقديمك الطلب سوف يتم مراجعة الطلب وسوف يتم التواصل معك عند
+        الانتهاء من مراجعة الطلب.
+      </p>
+      <br />
+      <a href="{% url 'index_page' %}" class="btn btn-success">الصفحة الرئيسية</a>
+      <br />
+    </div>
+  </div>
+</div>
 {% endblock %}

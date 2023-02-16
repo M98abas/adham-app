@@ -9,6 +9,9 @@ from .models import Admin
 from user.models import UsersData,UsersInfo
 from django.http import HttpResponse
 def get(request):
+    if not request.user.is_authenticated:
+        return redirect("login_user")
+    print(not request.user.is_authenticated)
     # Get all items and send it to front-end
     data = Admin.objects.all()
     context = {'data':data}
@@ -19,37 +22,38 @@ def register(request,*args,**kwargs):
     form = loginmodel(request.POST or None)
     if request.method == 'POST':
         form = loginmodel(request.POST)
-        print(form)
+        print(form.is_valid())
         if form.is_valid():
             user_obj = form.save()
             print(user_obj,"Created")
-            return redirect("/admin-managment/login")
+            return redirect("login_user")
 
     return render(request, "register.html",{'form':form})
 
 
 def login_view(request):
-    try:
-        context= {}
-        if request.method == 'POST':
-            # print(form)
-            email = request.POST["username"]
-            password = request.POST["password"]
-            form = authenticate(request,username=email,password=password)
-            print(form)
+    context= {}
+    form = AuthenticationForm(data=request.POST or None)
 
-            if form is not None: 
-                login(request,form)
-                return redirect('Indexing')
-        
-        form = AuthenticationForm(data=request.POST or None)
-        context =  {
-        'message':"Error","form":form
-        }
-                
-        return render(request, 'login.html',context)
-    except (Exception):
-        return render(request, 'login.html',{"message":"الرمز او اسم المستخدم خطأ الرجال اعد المحاولة"})
+    if request.method == 'POST':
+        # print(form)
+        email = request.POST.get("username")
+        password = request.POST.get("password")
+        print(email,password)
+        form = authenticate(request,username=email,password=password)
+        print(form)
+
+        if email != "" and password != "": 
+            login(request,form)
+            return redirect('Indexing')
+        else:
+            context =  {
+            'message':"Error","form":form
+            }
+            
+    return render(request, 'login.html',context)
+    # except (Exception):
+    #     return render(request, 'login.html',{"message":"الرمز او اسم المستخدم خطأ الرجال اعد المحاولة"})
 
 
 # @staff_member_required(login_url='Login')

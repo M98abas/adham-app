@@ -1,9 +1,15 @@
 {% extends 'base.html' %} 
 {% block logout %}
-<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
+<form action="{% url 'logout_admin_user' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
   <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
 </form>
 
+{% endblock %}
+
+{% block nav-bar %}
+<a class="navbar-brand" href="{% url 'Indexing' %}" dir="ltr"
+>الصفحة الرئيسية</a
+>
 {% endblock %}
 
 {% block Title %} الطلبات{% endblock %} 

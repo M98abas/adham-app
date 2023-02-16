@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block logout %}
+<form
+  action="{% url 'logout' %}"
+  method="POST"
+  style="display: flex; justify-content: center"
+  accept-charset="utf-8"
+>
+  {% csrf_token %}
+  <input
+    type="submit"
+    name="logout_user"
+    style="width: 100%; height: 100%"
+    value="تسجيل الخروج"
+  />
+</form>
+
+{% endblock %}
+
+{% block nav-bar %}
+  <a class="navbar-brand" href="{% url 'index_page' %}" dir="ltr">الصفحة الرئيسية</a>
+  <a class="navbar-brand" href="{% url 'teams_template' %}" dir="ltr">لجنة المناقشة</a>
+
+{% endblock %}
+
+{% block Title %}لجنة المناقشة{% endblock %} {% block body %}
+<div class="container" style="padding: 20px;">
+  <div
+    class="row text-center"
+    style="display: flex; justify-content: space-between;align-items: center; gap: 5px"
+  >
+    <div class="col-md-3 card" style="width: 18rem">
+      <img class="card-img-top" src="..." alt="صورة الاستاذ" />
+      <div class="card-body">
+        <h5 class="card-title">الاستاذ الاول</h5>
+        <p class="card-text">
+          اختصاص الاستاذ وماهو العنوان الوظيفي
+        </p>
+        <a href="#" class="btn btn-primary">للمزيد من المعلومات</a>
+      </div>
+    </div>
+    <div class="col-md-3 card" style="width: 18rem">
+        <img class="card-img-top" src="..." alt="صورة الاستاذ" />
+        <div class="card-body">
+          <h5 class="card-title">الاستاذ الثاني</h5>
+          <p class="card-text">
+            اختصاص الاستاذ وماهو العنوان الوظيفي
+          </p>
+          <a href="#" class="btn btn-primary">للمزيد من المعلومات</a>
+        </div>
+      </div>
+      <div class="col-md-3 card" style="width: 18rem">
+        <img class="card-img-top" src="..." alt="صورة الاستاذ" />
+        <div class="card-body">
+          <h5 class="card-title">الاستاذ الثالث</h5>
+          <p class="card-text">
+            اختصاص الاستاذ وماهو العنوان الوظيفي
+          </p>
+          <a href="#" class="btn btn-primary">للمزيد من المعلومات</a>
+        </div>
+      </div>
+      <div class="col-md-3 card" style="width: 18rem">
+        <img class="card-img-top" src="..." alt="صورة الاستاذ" />
+        <div class="card-body">
+          <h5 class="card-title">الاستاذ الرابع</h5>
+          <p class="card-text">
+            اختصاص الاستاذ وماهو العنوان الوظيفي
+          </p>
+          <a href="#" class="btn btn-primary">للمزيد من المعلومات</a>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

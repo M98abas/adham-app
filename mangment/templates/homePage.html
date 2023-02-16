@@ -2,14 +2,19 @@
 
 
 {% block logout %}
-<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
+<form action="{% url 'logout_admin_user' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
   <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
 </form>
 
 {% endblock %}
 
-<div class="container">
-    {% block body%}
+{% block nav-bar %}
+<a class="navbar-brand" href="{% url 'Indexing' %}" dir="ltr"
+>الصفحة الرئيسية</a
+>
+{% endblock %}
+<div class="container" style="height: 80vh">
+  {% block body%}
   <div class="card">
     <div class="card-body" style="direction: rtl;">
       <div class="row">

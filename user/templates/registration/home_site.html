@@ -1,46 +1,119 @@
-{% extends "base.html" %} {% block Title %} Admin {% endblock %} 
-{% block logout %}
-<form action="{% url 'logout' %}" method="POST" style="display: flex; justify-content: center;" accept-charset="utf-8">{% csrf_token %}
-  <input type="submit" name="logout_user" style="width: 100%; height: 100%;" value="تسجيل الخروج">
+{% extends "base.html" %} 
+{% block Title %} الادمن {% endblock %} 
+
+{% block logout%}
+<form
+  action="{% url 'logout' %}"
+  method="POST"
+  style="display: flex; justify-content: center"
+  accept-charset="utf-8"
+>
+  {% csrf_token %}
+  <input
+    type="submit"
+    name="logout_user"
+    style="width: 100%; height: 100%"
+    value="تسجيل الخروج"
+  />
 </form>
 
 {% endblock %}
-{% block body%}
+{% block nav-bar %}
+  <a class="navbar-brand" href="{% url 'index_page' %}" dir="ltr">الصفحة الرئيسية</a>
+  <a class="navbar-brand" href="{% url 'teams_template' %}" dir="ltr">لجنة المناقشة</a>
 
-{% load static %}
-<div class="container" style="display: flex;">
+{% endblock %}
+
+{% block body%} {% load static %}
+<div class="container" style="display: flex">
   <div class="card" style="width: 1000px; height: 500px">
     <div class="card-body">
       <div class="row">
-        <div class="col-5">
-          <div class="card" style=" mix-blend-mode: multiply; width: 18rem; height: 400px;line-height: 20px;align-items: center; display: flex; padding: 0 5px;">
+        <div class="col-4" dir="rtl">
+          <div
+            class="card"
+            style="
+              mix-blend-mode: multiply;
+              width: 18rem;
+              height: 400px;
+              line-height: 20px;
+              align-items: center;
+              display: flex;
+              padding: 0 5px;
+            "
+          >
             <img
               class="card-img-top"
               src='{% static "images/request-box.jpg" %}'
               alt="Card image cap"
-              style="width: 180px; height: auto;"
+              style="width: 180px; height: auto"
             />
             <div class="card-body">
-              <h5 class="card-title">Make Request</h5>
-              <p class="card-text">
-                From Here you can make request with all required files.
+              <h5 class="card-title">تقديم طلب</h5>
+              <p class="card-text" style="font-size: 14px">
+                من هنا تستطيع تقديم طلب جديد.
               </p>
-              <a href="{% url 'files_form' %}" class="btn btn-primary">Go Form</a>
+              <a href="{% url 'files_form' %}" class="btn btn-primary"
+                >الذهاب الى فورمة التقديم</a
+              >
             </div>
           </div>
         </div>
-        <div class="col-5">
-          <div class="card" style=" mix-blend-mode: multiply; width: 18rem; height: 400px;line-height: 20px;align-items: center; display: flex; padding: 0 5px;">
+        <div class="col-4" dir="rtl">
+          <div
+            class="card"
+            style="
+              mix-blend-mode: multiply;
+              width: 18rem;
+              height: 400px;
+              line-height: 20px;
+              align-items: center;
+              display: flex;
+              padding: 0 5px;
+            "
+          >
             <img
               class="card-img-top"
               src="{% static 'images/status.png' %}"
               alt="Card image cap"
-              style="width: 180px; height: auto;"
+              style="width: 180px; height: auto"
             />
             <div class="card-body">
-              <h5 class="card-title">My requests</h5>
-              <p class="card-text">See All request status that you send.</p>
-              <a href="{% url 'getElement' %}" class="btn btn-primary">Go</a>
+              <h5 class="card-title">طلباتي</h5>
+              <p class="card-text" style="font-size: 14px">
+                رؤية جميع الطلبات وايضا رؤية حالتهن.
+              </p>
+              <a href="{% url 'getElement' %}" class="btn btn-primary"
+                >الذهاب</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-4" dir="rtl">
+          <div
+            class="card"
+            style="
+              mix-blend-mode: multiply;
+              width: 18rem;
+              height: 400px;
+              line-height: 20px;
+              align-items: center;
+              display: flex;
+              padding: 0 5px;
+            "
+          >
+            <img
+              class="card-img-top"
+              src="{% static 'images/cond.png' %}"
+              alt="Card image cap"
+              style="width: 180px; height: auto"
+            />
+            <div class="card-body">
+              <h5 class="card-title">شروط التقديم</h5>
+              <p class="card-text" style="font-size: 14px">
+                الرجاء الاطلاع على الشروط قبل التقديم.
+              </p>
+              <a href="{% url 'terms' %}" class="btn btn-primary">الذهاب</a>
             </div>
           </div>
         </div>
@@ -48,4 +121,53 @@
     </div>
   </div>
 </div>
-{% endblock%}
+{% endblock%} 
+
+{% block footer %}
+
+<footer class="mainfooter" role="contentinfo">
+  <div class="footer-middle">
+    <div class="container-footer">
+      <div
+        class="row"
+        style="width: 90vw; display: flex; justify-content: space-between"
+      >
+        <div class="col-md-6 col-sm-6">
+          <div class="footer-pad">
+            <h4 style="cursor: pointer">جامعة الامام الكاظم</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://alkadhum-col.edu.iq/">صفحة الجامعة الرئيسية</a>
+              </li>
+              <li><a href="https://alkadhum-col.edu.iq/">الفروع</a></li>
+              <li><a href="https://alkadhum-col.edu.iq/"> اخر الاخبار </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="footer-pad">
+            <h4 style="cursor: pointer">روابط اخرى</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://alkadhum-col.edu.iq/pages/83">
+                  جدول الاقسام
+                </a>
+              </li>
+              <li>
+                <a href="https://alkadhum-col.edu.iq/graduates">الخريجيين</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 copy">
+          <p class="text-center">
+            © Copyright 2023 - alkadhum Collage . All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

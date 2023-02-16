@@ -6,78 +6,107 @@
 </form>
 
 {% endblock %}
+{% block nav-bar %}
+  <a class="navbar-brand" href="{% url 'index_page' %}" dir="ltr">الصفحة الرئيسية</a>
+  <a class="navbar-brand" href="{% url 'teams_template' %}" dir="ltr">لجنة المناقشة</a>
 
+{% endblock %}
 {% block body %}
 <div class="main-container" style="text-align:right;align-items: center;display: flex;flex-direction: column; width: auto; height:auto;">
     <div class="content" style="width: 720px;">
 
-        <form method="post"  action="{% url 'make_request' %}" enctype="multipart/form-data" >
+        <form method="post" class="needs-validation" novalidate action="{% url 'make_request' %}" enctype="multipart/form-data" >
         {% csrf_token %}
         <br>
         <div class="text-center mb-auto-3">
             <p>انشاء طلب جديد</p>
         </div>
+        
+        <label for="email" class="form-label">الاسم الرباعي</label>
+        <div class="form-outline mb-4">
+            <input type="text" id="userName" name="userName" style="text-align: right;" class="form-control" required />
+        </div>
 
         <label for="email" class="form-label">ايميل</label>
         <div class="form-outline mb-4">
-            <input type="email" id="email" name="email" style="text-align: right;" class="form-control" />
-            {{message}}
+            <input type="email" id="validationCustom05" name="email" style="text-align: right;" class="form-control" required/>
         </div>
-
+       
         <label for="phone" class="form-label">رقم الهاتف</label>
         <div class="form-outline mb-4 ">
-            <input type="number" id="phone" name="phone" style="text-align: center;"  class="form-control" placeholder="+964 780-7777-777"/>
+            <input type="number" id="phone" name="phone" style="text-align: center;"  class="form-control" placeholder="+964 780-7777-777" required/>
         </div>
-
-        <label for="job_title" class="form-label">العنوان الوظيفي</label>
+        
+        <label for="department" class="form-label">القسم العلمي</label>
         <div class="form-outline mb-4 ">
-            <input type="text" id="job_title" name="job_title"  style="text-align: right;"  class="form-control" />
+            <input type="text" id="loginName" style="text-align: right;"  name="department" class="form-control" required/>
         </div>
 
         <label for="spacificTitle" class="form-label">التخصص الدقيق</label>
         <div class="form-outline mb-4 ">
-            <input type="text" id="spacificTitle"  style="text-align: right;" name="spacificTitle" class="form-control" />
+            <input type="text" id="spacificTitle"  style="text-align: right;" name="spacificTitle" class="form-control" required/>
         </div>
 
-        <label for="department" class="form-label">القسم</label>
+
+        <label for="job_title" class="form-label">العنوان الوظيفي</label>
         <div class="form-outline mb-4 ">
-            <input type="text" id="loginName" style="text-align: right;"  name="department" class="form-control" />
+            <input type="text" id="job_title" name="job_title"  style="text-align: right;"  class="form-control" required/>
         </div>
 
         <label for="currently_job_title" class="form-label">العنوان الوظيفي الحالي</label>
         <div class="form-outline mb-4 ">
-            <input type="text" id="loginName"  style="text-align: right;" name="currently_job_title" class="form-control" />
+            <input type="text" id="loginName"  style="text-align: right;" name="currently_job_title" class="form-control" required/>
         </div>
 
         <label for="date_reviced_title" class="form-label">تاريخ الحصول على اللقب العلمي</label>
         <div class="form-outline mb-4 ">
-            <input type="date" id="loginName" style="text-align: right;"  name="date_reviced_title" placeholder="01-01-2022" class="form-control" />
+            <input type="date" id="loginName" style="text-align: right;"  name="date_reviced_title" placeholder="01-01-2022" class="form-control" required />
         </div>
 
         <label for="targeted_title" class="form-label">اللقب العلمي المراد الحصول عليه</label>
         <div class="form-outline mb-4 ">
-            <input type="text" id="loginName" style="text-align: right;"  name="targeted_title" class="form-control" />
+            <input type="text" id="loginName" style="text-align: right;"  name="targeted_title" class="form-control"required />
         </div>
         
         <label for="validation_date" class="form-label">تاريخ تقييم البحث</label>
         <div class="form-outline mb-4 ">
-            <input type="date" id="loginName" name="validation_date" placeholder="01-01-2022" class="form-control" />
+            <input type="date" id="loginName" name="validation_date" placeholder="01-01-2022" class="form-control"required />
         </div>
 
         <label for="requested_date" class="form-label">تاريخ الطلب</label>
         <div class="form-outline mb-4 ">
-            <input type="date" id="loginName" name="requested_date" placeholder="01-01-2022" class="form-control" />
+            <input type="date" id="loginName" name="requested_date" placeholder="01-01-2022" class="form-control" required/>
         </div>
        
         <div class="form-outline mb-4 ">
-            <input type="file" id="loginName" name="uploads" multiple class="form-control" />
+            <input type="file" id="loginName" name="uploads" multiple class="form-control" required/>
         </div>
 
-        <input type="submit" class="btn btn-primary btn-block mb-4" value="login" />
+        <input type="submit" class="btn btn-primary btn-block mb-4" value="تقديم الطلب"/>
         <!-- Submit button -->
         </form>
     </div>
 
 </div>
+<script>
+    (function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
 {% endblock %}

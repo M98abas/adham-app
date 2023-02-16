@@ -3,8 +3,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>   
+    <link
+      href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Font Awesome -->
     <link
@@ -22,27 +29,145 @@
       rel="stylesheet"
     />
     <style>
-    
-
-    .container{
-      width: 2000px;
-      height: 80vh;
-      align-items: center;
-      text-align: center;
-      
-    }
-    .container .card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      
-    }
-    .card-body .row{
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;      
-    }
+      body{
+        overflow-x: hidden;
+      }
+      h2 {
+        padding: 25px 0;
+        text-align: center;
+        color: #fff;
+        background: #7c8490;
+      }
+      footer {
+        background: rgb(114, 163, 243);
+        color: white;
+        margin-top: 10px;
+      }
+      footer a {
+        color: #fff;
+        font-size: 14px;
+        transition-duration: 0.2s;
+      }
+      footer a:hover {
+        color: #fa944b;
+        text-decoration: none;
+      }
+      .copy {
+        font-size: 12px;
+        padding: 10px;
+        border-top: 1px solid #ffffff;
+      }
+      .footer-middle {
+        padding-top: 2em;
+        color: white;
+      }
+      ul.social-network {
+        list-style: none;
+        display: inline;
+        margin-left: 0 !important;
+        padding: 0;
+      }
+      ul.social-network li {
+        display: inline;
+        margin: 0 5px;
+      }
+  
+      .social-network a.icoFacebook:hover {
+        background-color: #3b5998;
+      }
+      .social-network a.icoLinkedin:hover {
+        background-color: #007bb7;
+      }
+      .social-network a.icoFacebook:hover i {
+        color: #fff;
+      }
+      .social-network a.icoLinkedin:hover i {
+        color: #fff;
+      }
+      .social-network a.socialIcon:hover {
+        color: #44bcdd;
+      }
+      .socialHoverClass {
+        color: #44bcdd;
+      }
+      .container-footer{
+        width: 2000px;
+        align-items: center;
+        text-align: center;
+        height: 25vh;
+      }
+      .social-circle li a {
+        display: inline-block;
+        position: relative;
+        margin: 0 auto 0 auto;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+      }
+      .social-circle li i {
+        margin: 0;
+        line-height: 30px;
+        text-align: center;
+      }
+      .social-circle li a:hover i {
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -ms--transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+      .triggeredHover {
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -ms--transform: rotate(360deg);
+        transform: rotate(360deg);
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+      .social-circle i {
+        color: #595959;
+        -webkit-transition: all 0.8s;
+        -moz-transition: all 0.8s;
+        -o-transition: all 0.8s;
+        -ms-transition: all 0.8s;
+        transition: all 0.8s;
+      }
+      .social-network a {
+        background-color: #f9f9f9;
+      }
+      .social-network a:hover {
+        background: #ff304d;
+      }
+    </style>
+    <style>
+      .container {
+        width: 2000px;
+        height: 80vh;
+        align-items: center;
+        text-align: center;
+      }
+      .container .card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .card-body .row {
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     </style>
     {% block style %} {% endblock %}
 
@@ -60,62 +185,105 @@
       crossorigin="anonymous"
     />
   </head>
-  
-  <body class="sb-nav-fixed">
 
-    <nav class="sb-topnav navbar navbar-expand" style="direction: rtl; background-color: #7b8adc;">
-      <div style="width: 80px; height: auto; padding: 4px; background-color: white; border-radius: 50%; object-fit: contain; justify-content: center; display: flex;" class="navbar-brand">
-        <img src='{% static "images/logos.jpg" %}' style="width: 70px; height: auto;  mix-blend-mode: multiply;" alt="logo">
-      
-      </div>
-      <a class="navbar-brand" href="https://alkadhum-col.edu.iq/" dir="ltr">صفحة الريسية</a>
-      <a class="navbar-brand" href="https://alkadhum-col.edu.iq/" dir="ltr"> ... تواصل معنا</a>
+  <body class="sb-nav-fixed">
+    <nav
+      class="sb-topnav navbar navbar-expand"
+      style="direction: rtl; background-color: #7b8adc"
+    >
+      <a class="navbar-brand" href="https://alkadhum-col.edu.iq/" dir="ltr">
+        <div
+          style="
+            width: 80px;
+            height: auto;
+            padding: 4px;
+            background-color: white;
+            border-radius: 50%;
+            object-fit: contain;
+            justify-content: center;
+            display: flex;
+          "
+          class="navbar-brand"
+        >
+          <img
+            src='{% static "images/logos.jpg" %}'
+            style="width: 70px; height: auto; mix-blend-mode: multiply"
+            alt="logo"
+          />
+        </div>
+      </a>
+     {% block nav-bar %}
+     {% endblock %}
+     
       <!-- Navbar Search-->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="GET" name ="query" action="/search/">
-         
-      </form>
+      <form
+        class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
+        method="GET"
+        name="query"
+        action="/search/"
+      ></form>
       <!-- Navbar-->
       {% if user.is_authenticated %}
-          <ul class="navbar-nav ml-auto ml-md-0" style="direction: rtl;">
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                  <div class="dropdown-menu dropdown-menu-center" aria-labelledby="userDropdown">
-                      <div class="dropdown-divider"></div>
-                      {% block logout %}{% endblock %}
-                  </div>
-              </li>
-              <li>
-                <div id="layoutSidenav">
-                <div id="layoutSidenav_nav">
-                <div class="sb-sidenav-footer" style="color: black;">
-                <div class="small">مرحبا بك:
-                  {{ user.username }} 
-                </div>
+      <ul class="navbar-nav ml-auto ml-md-0" style="direction: ltr">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="userDropdown"
+            href="#"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fas fa-user fa-fw"></i
+          ></a>
+          <div
+            class="dropdown-menu dropdown-menu-center"
+            aria-labelledby="userDropdown"
+          >
+            <div class="dropdown-divider"></div>
+            {% block logout %}{% endblock %}
+          </div>
+        </li>
+        <li style="display: flex; align-items: center; direction: rtl">
+          <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+              <div class="sb-sidenav-footer" style="color: black">
+                <div class="small">مرحبا بك: {{ user.username }}</div>
               </div>
             </div>
-          </div>  
-      </li>
+          </div>
+        </li>
+      </ul>
+      {% endif %}
+    </nav>
 
-    </ul>
-          {% endif %}
-        </nav>
-
-
-        <div class="layoutSidenav_content">
-          {% block body %} {% endblock %}
-
-        </div>
-        
+    <div class="layoutSidenav_content">{% block body %} {% endblock %}</div>
+   {% block footer %}{% endblock %}
     <!-- MDB -->
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
     ></script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

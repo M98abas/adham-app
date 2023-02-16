@@ -10,7 +10,7 @@ class UsersData(models.Model):
 
 class UsersInfo(models.Model):
     job_title = models.CharField(max_length=30, null=True)
-    spacificTitle = models.CharField(max_length=30)
+    spacificTitle = models.CharField(max_length=30, default="")
     department = models.CharField(max_length=130)
     currently_job_title = models.CharField(max_length=130)
     date_reviced_title = models.DateField(null=True)

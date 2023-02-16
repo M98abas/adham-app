@@ -6,7 +6,11 @@
 </form>
 
 {% endblock %}
+{% block nav-bar %}
+  <a class="navbar-brand" href="{% url 'index_page' %}" dir="ltr">الصفحة الرئيسية</a>
+  <a class="navbar-brand" href="{% url 'teams_template' %}" dir="ltr">لجنة المناقشة</a>
 
+{% endblock %}
 {% block style %}
 <style>
 
@@ -36,17 +40,30 @@ box-shadow: 5px 8px 7px rgba(0, 0, 0, 0.1);
       </tr>
     </thead>
     <tbody>
-      {% for row in data %}
+      {% if data|length != 0 %}
+        {% for row in data %}
+        <tr>
+          <th scope="">{{row.pk}}</th>
+          <td>{{row.users.email}}</td>
+          <td>{{row.job_title}}</td>
+          <td>{{row.targeted_title}}</td>
+          <td>{{row.request_status}}</td>
+          <td>{{row.users.create_at}}</td>
+        </tr>
+      
+        {% endfor %}
+        
+      {% else %}
       <tr>
-        <th scope="">{{row.pk}}</th>
-        <td>{{row.users.email}}</td>
-        <td>{{row.job_title}}</td>
-        <td>{{row.targeted_title}}</td>
-        <td>{{row.request_status}}</td>
-        <td>{{row.users.create_at}}</td>
+        <th scope="">0</th>
+        <td>لا توجد بيانات</td>
+        <td>لا توجد بيانات</td>
+        <td>لا توجد بيانات</td>
+        <td>لا توجد بيانات</td>
+        <td>لا توجد بيانات</td>
+
       </tr>
-    
-      {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 </div>
